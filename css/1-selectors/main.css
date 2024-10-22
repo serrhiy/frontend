@@ -1,0 +1,89 @@
+
+/* universal selector */
+* {
+  color: green;
+}
+
+/* selector of a type */
+section {
+  padding: 2em;
+}
+
+/* selector of a class */
+.my-class {
+  color: red;
+}
+
+/* selector by id */
+#rad {
+  border: 1px solid blue;
+}
+
+/* selector by attribute */
+[data-type='primary'] {
+  color: red;
+}
+
+[data-type] {
+  color: red;
+}
+
+/* href containes "example.com" */
+[href*='example.com'] {
+  color: red;
+}
+
+/* href starts with https */
+[href^='https'] {
+  color: green;
+}
+
+/* href ends with .com */
+[href$='.com'] {
+  color: blue;
+}
+
+/* grouping */
+strong, em, .my-class, [lang] {
+  color: red;
+}
+
+/* We have a mouse pointer over our link */
+a:hover {
+  outline: 1px dotted green;
+}
+
+/* Set a different background color for all even-numbered paragraphs */
+p:nth-child(even) {
+  background: floralwhite;
+}
+/* pseudo-element - add content befgfor class */
+.my-element::before {
+  content: 'Prefix - ';
+}
+
+/* Now the list will either have red dots or red numbers */
+li::marker {
+  color: red;
+}
+
+/* Apply styles to user-selected content */
+::selection {
+  background: black;
+  color: white;
+}
+
+/* get next element after .element (immidietly next) */
+.element + .next {
+  background: black;
+}
+
+/* get next element after .element (not immidietly next) */
+.element ~ .next {
+  background: black;
+}
+
+/* only for child elemenents */
+.element > .next {
+  background: black;
+}
