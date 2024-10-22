@@ -1,0 +1,25 @@
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  place-items: center;
+  display: grid;
+}
+
+.square {
+  width: 20rem;
+  height: 20rem;
+  background: linear-gradient(#778ca3, #4b6584);
+  border: 5px solid;
+  border-top-color: lightsteelblue;
+  border-right-color: lightsteelblue;
+  border-bottom-color: lightslategray;
+  border-left-color: slategray;
+  box-shadow: 0px 0px 20px rgb(0 0 0 / 0.3);
+  border-radius: 0.5rem;
+}
