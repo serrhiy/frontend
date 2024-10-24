@@ -1,0 +1,21 @@
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  margin: 3rem 3rem 0;
+  font-size: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+}
+
+.box {
+  border: 2px solid #333;
+  padding: 1rem;
+  text-align: center;
+}
+

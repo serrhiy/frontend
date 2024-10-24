@@ -1,0 +1,20 @@
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+article {
+  margin: 2rem 2rem 0;
+}
+
+img {
+  height: 20rem;
+  float: left;
+  margin-right: 0.5rem;
+}
+
+p {
+  text-indent: 1rem;
+}
