@@ -8,17 +8,17 @@
 .container {
   height: 50vh;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 1rem;
   margin: 3rem;
   border: 2px solid #66b2ff;
   background-color: #e6f2ff;
-  /* justify-content: center; */
-  /* justify-content: space-around; */
-  /* justify-content: space-between; */
-  /* justify-content: flex-start; */
-  /* justify-content: flex-end; */
-  justify-content: space-evenly;
+  /* align-content: center; */
+  /* align-content: space-around; */
+  /* align-content: space-between; */
+  /* align-content: flex-start; */
+  /* align-content: flex-end; */
+  align-content: center;
 }
 
 .box {
