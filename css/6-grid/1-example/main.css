@@ -1,0 +1,23 @@
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  margin: 3rem;
+  display: grid;
+  grid-template-columns: 10em 100px 30%;
+  grid-template-rows: 200px auto;
+  gap: 1rem;
+}
+
+.content {
+  color: #333;
+  border: 2px solid #333;
+  padding: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
