@@ -1,0 +1,31 @@
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.page {
+  margin: 0 3rem;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  font-size: 1.5rem;
+  display: grid;
+  gap: 1rem;
+  /* grid-template-columns: repeat(3, 1fr); */
+  grid-template-columns: 1fr 2fr 3fr;
+}
+
+.content {
+  color: #333;
+  border: 2px solid #333;
+  padding: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
