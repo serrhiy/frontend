@@ -5,8 +5,14 @@
   box-sizing: border-box;
 }
 
+.page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .container {
-  margin: 3rem;
   display: grid;
   grid-template-columns: 10em 100px 30%;
   grid-template-rows: 200px auto;
