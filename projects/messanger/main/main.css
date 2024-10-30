@@ -175,6 +175,8 @@ main {
   color: inherit;
   height: 100%;
   padding: 0.5rem;
+  font-size: inherit;
+  width: 100%;
 }
 
 .resizer {
