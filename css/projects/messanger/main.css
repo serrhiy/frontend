@@ -102,7 +102,6 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid #333;
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 1rem;
@@ -111,12 +110,77 @@ main {
 
 .dialog {
   flex: 2;
+  min-width: 30%;
+  background-color: #0e1621;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  gap: 0.75rem;
+}
+
+.dialog .messages {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: end;
+  gap: 0.75rem;
+}
+
+.messages .my-message {
+  align-self: end;
+  margin-right: 1rem;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  display: flex;
+  gap: 0.5rem;
+  background-color: #2b5278;
+  max-width: 70%;
+}
+
+.messages .text {
+  word-break: break-all;
+  flex: auto;
+}
+
+.messages .time {
+  color: #709ac4;
+  font-size: 0.75rem;
+  align-self: end;
+  flex: auto;
+}
+
+.messages .persons-message {
+  align-self: start;
+  margin-left: 1rem;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  display: flex;
+  gap: 0.5rem;
+  background-color: #182533;
+  max-width: 70%;
+}
+
+.persons-message .time {
+  color: #5a6c7b;
+}
+
+.dialog .message-input {
+  height: 3rem;
+  background-color: #17212b;
+}
+
+.message-input input {
+  border: 0;
+  outline: 0;
+  background-color: inherit;
+  color: inherit;
+  height: 100%;
+  padding: 0.5rem;
 }
 
 .resizer {
   cursor: ew-resize;
-  width: 2px;
-  background-color: #333;
+  width: 1px;
+  background-color: #0e1621;
 }
 
 .chat:hover {
