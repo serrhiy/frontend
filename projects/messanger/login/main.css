@@ -50,7 +50,7 @@
   font-size: inherit;
 }
 
-
 .submit:hover {
   background-color: #666;
+  cursor: pointer;
 }
