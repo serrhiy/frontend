@@ -25,6 +25,8 @@ export default class Dialog {
   #dialog = null;
   #input = null;
   #onMessage = null;
+  #divMessages = null;
+  #messages = [];
 
   constructor(messages) {
     const divMessages = document.createElement('div');
@@ -35,10 +37,11 @@ export default class Dialog {
     }
     this.#dialog = divMessages;
     this.#input = new Input().onMessage((message) => {
-      const generated = buildMessage(message, getCurrentTime(), true);
-      divMessages.prepend(generated);
+      this.addMessage(message, true);
       this.#onMessage?.(message);
     }).generate();
+    this.#divMessages = divMessages;
+    this.#messages = messages;
   }
 
   generate() {
@@ -50,5 +53,11 @@ export default class Dialog {
   onMessage(listener) {
     this.#onMessage = listener;
     return this;
+  }
+
+  addMessage(message, myMassage = true, time = getCurrentTime()) {
+    const generated = buildMessage(message, time, myMassage);
+    this.#divMessages.prepend(generated);
+    this.#messages.push({ message, time, myMassage });
   }
 }

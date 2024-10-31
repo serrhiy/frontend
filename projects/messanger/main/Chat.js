@@ -38,16 +38,15 @@ const buildChat = (user, avatar, text, date, messages) => {
 
 export default class Chat {
   #chat = null;
-  #onMessage = null;
+  #dialog = null;
 
   constructor(data) {
     const { user: { username, avatar }, messages, unreadMessages } = data;
     const { message, time } = messages[0];
     const chat = buildChat(username, avatar, message, time, unreadMessages);
     this.#chat = chat;
-    const generated = new Dialog(messages).onMessage((message) => {
-      this.#onMessage?.(message);
-    }).generate();
+    this.#dialog = new Dialog(messages);
+    const generated = this.#dialog.generate();
     chat.addEventListener('click', () => {
       const active = document.getElementsByClassName('chat active').item(0);
       if (active) active.classList.remove('active');
@@ -61,7 +60,7 @@ export default class Chat {
     return this.#chat;
   }
 
-  onMessage(listener) {
-    this.#onMessage = listener;
+  get dialog() {
+    return this.#dialog;
   }
 }
