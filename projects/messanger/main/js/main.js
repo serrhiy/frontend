@@ -19,7 +19,9 @@ const main = async () => {
     const view = chat.generate();
     chatItem.appendChild(view);
     chat.dialog.onMessage((message) => {
-      chat.dialog.addMessage('My answer is: ' + message, false);
+      setTimeout(() => {
+        chat.dialog.addMessage('My answer is: ' + message, false);
+      }, 3000);
     });
   }
 };
