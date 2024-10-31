@@ -112,10 +112,14 @@ main {
   flex: 2;
   min-width: 30%;
   background-color: #0e1621;
+}
+
+.dialog > div {
   display: flex;
   flex-direction: column;
   justify-content: end;
   gap: 0.75rem;
+  height: 100%;
 }
 
 .dialog .messages {
@@ -181,11 +185,20 @@ main {
 
 .resizer {
   cursor: ew-resize;
-  width: 1px;
+  width: 3px;
   background-color: #0e1621;
 }
 
 .chat:hover {
   background-color: #202b36;
   cursor: pointer;
+}
+
+.chats .active {
+  background-color: #2b5278;
+}
+
+.chats .active .info .time,
+.chats .active .info .message {
+  color: whitesmoke;
 }

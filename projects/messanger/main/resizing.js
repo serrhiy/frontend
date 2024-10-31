@@ -8,10 +8,12 @@ export default () => {
   let resizing = false;
   resizer.addEventListener('mousedown', () => {
     document.body.style.cursor = 'ew-resize';
+    document.body.style['user-select'] = 'none';
     resizing = true;
   });
   document.addEventListener('mouseup', () => {
     document.body.style.cursor = 'auto';
+    document.body.style['user-select'] = 'auto';
     resizing = false;
   });
   document.addEventListener('mousemove', (event) => {
