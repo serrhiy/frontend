@@ -7,6 +7,10 @@
   --unread-message-color: #4082bc;
   --passive-text-color: #637283;
   --primary-text-color: #e4e9ee;
+  --my-message-color: #2b5278;
+  --other-message-color: #182533;
+  --my-message-time-color: #6690b9;
+  --other-message-time-color: #697b8a;
 }
 
 * {
@@ -120,4 +124,64 @@ main {
 .dialog {
   flex: 2;
   background-color: var(--dialog-background-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  height: 100%;
+}
+ 
+.dialog .message-input input {
+  border: 0;
+  outline: 0;
+  background-color: var(--chats-background-color);
+  width: 100%;
+  color: inherit;
+  height: 3rem;
+  font-size: inherit;
+  padding: 1rem;
+}
+
+.dialog .messages {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+
+.dialog .messages > * > * {
+  display: inline;
+}
+
+.dialog .messages > * {
+  border-radius: 1rem;
+  padding: 0.75rem;
+  max-width: 70%;
+}
+
+.dialog .messages .my {
+  align-self: end;
+  background-color: var(--my-message-color);
+}
+
+.dialog .messages .other {
+  align-self: start;
+  background-color: var(--other-message-color);
+}
+
+.dialog .messages .time {
+  font-size: 0.75rem;
+  vertical-align: bottom;
+}
+
+.dialog .messages .my .time {
+  color: var(--my-message-time-color);
+}
+
+.dialog .messages .other .time {
+  color: var(--other-message-time-color);
+}
+
+.dialog .messages .text {
+  word-break: break-all;
+  overflow-wrap: break-word;
 }
