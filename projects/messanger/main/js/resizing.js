@@ -1,7 +1,7 @@
 'use strict';
 
 const resizer = document.getElementsByClassName('resizer').item(0);
-const chats = document.getElementsByClassName('chat-list').item(0);
+const chats = document.getElementsByClassName('chats').item(0);
 const dialog = document.getElementsByClassName('dialog').item(0);
 
 export default () => {
