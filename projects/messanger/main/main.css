@@ -146,6 +146,8 @@ main {
   flex-direction: column;
   gap: 0.5rem;
   padding: 0.5rem;
+  overflow-y: auto;
+  scrollbar-width: none;
 }
 
 .dialog .messages > * > * {
