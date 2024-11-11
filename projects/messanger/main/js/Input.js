@@ -18,8 +18,8 @@ export default class Input {
   constructor() {
     const [messageInput, input] = buildInput();
     input.addEventListener('keypress', (event) => {
-      if (event.key !== 'Enter') return;
       const { value: text } = input;
+      if (event.key !== 'Enter' || text.length === 0) return;
       input.value = '';
       this.#onMessage?.(text);
     });

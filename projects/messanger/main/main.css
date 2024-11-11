@@ -122,6 +122,11 @@ main {
   text-overflow: ellipsis;
 }
 
+.chat .info .time {
+  white-space: nowrap;
+  word-spacing: -0.4rem;
+}
+
 .dialog {
   flex: 2;
   background-color: var(--dialog-background-color);

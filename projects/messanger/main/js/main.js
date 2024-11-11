@@ -15,9 +15,9 @@ const main = async () => {
   for (const item of data) {
     const chat = new Chat(item);
     chat.generate();
-    chat.dialog.onMessage((message) => {
+    chat.onMessage((message) => {
       setTimeout(() => {
-        chat.dialog.addMessage('My answer is: ' + message, false);
+        chat.addMessage('My answer is: ' + message);
       }, 3000);
     });
   }

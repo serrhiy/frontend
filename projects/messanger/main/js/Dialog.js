@@ -58,10 +58,14 @@ export default class Dialog {
     this.#input.generate();
   }
 
+  scroll() {
+    this.#messages.scrollTop = this.#messages.scrollHeight;
+  }
+
   addMessage(message, myMessage = true, time = getCurrentTime()) {
     const generated = buildMessage(message, time, myMessage);
     this.#messages.appendChild(generated);
     this.#usersMessages.push({ message, time, myMessage });
-    this.#messages.scrollTop = this.#messages.scrollHeight;
+    this.scroll();
   }
 }

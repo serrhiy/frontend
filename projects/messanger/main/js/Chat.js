@@ -5,6 +5,13 @@ import Dialog from './Dialog.js';
 const chatList = document.getElementsByClassName('chat-list').item(0);
 const divDialog = document.getElementsByClassName('dialog').item(0);
 
+const buildNumber = (count) => {
+  const number = document.createElement('div');
+  Object.assign(number, { className: 'number' });
+  number.appendChild(document.createTextNode(count));
+  return number;
+}
+
 const buildChat = (user, avatar, text, date, unreadMessages) => {
   const chat = document.createElement('div');
   const img = document.createElement('img');
@@ -29,43 +36,79 @@ const buildChat = (user, avatar, text, date, unreadMessages) => {
   message.appendChild(document.createTextNode(text));
   Object.assign(message, { className: 'message passive' });
   buttom.appendChild(message);
+  const unrMessages = document.createElement('div');
+  Object.assign(unrMessages, { className: 'unread-messages' });
+  buttom.appendChild(unrMessages);
   if (unreadMessages > 0) {
-    const unrMessages = document.createElement('div');
-    const number = document.createElement('div');
-    number.appendChild(document.createTextNode(unreadMessages));
-    Object.assign(unrMessages, { className: 'unread-messages' });
-    Object.assign(number, { className: 'number' });
+    const number = buildNumber(unreadMessages);
     unrMessages.appendChild(number);
-    buttom.appendChild(unrMessages);
   }
-  return chat;
+  return {
+    html: chat,
+    username: (string) => void (username.innerHTML = string),
+    time: (date) => void (time.innerHTML = date),
+    message: (text) => void (message.innerHTML = text),
+    unreadMessages: (count) => {
+      if (count === 0) return void (unrMessages.innerHTML = '');
+      const number = unrMessages.firstChild;
+      if (number) number.innerHTML = count;
+      else unrMessages.appendChild(buildNumber(count));
+    },
+  };
 };
 
 export default class Chat {
   #dialog = null;
   #chat = null;
+  #info = null;
+  #onMessage = null;
 
   constructor(data) {
     const { user: { username, avatar }, messages, unreadMessages } = data;
     const { message, time } = messages[0];
     const chat = buildChat(username, avatar, message, time, unreadMessages);
     const dialog = new Dialog(messages);
-    chat.addEventListener('click', () => {
+    chat.html.addEventListener('click', () => {
       const active = document.getElementsByClassName('chat active').item(0);
       if (active) active.classList.remove('active');
-      chat.classList.add('active');
+      chat.html.classList.add('active');
       divDialog.innerHTML = '';
-      this.#dialog.generate();
+      dialog.generate();
+      if (this.#info.unreadMessages > 0) {
+        this.#info.unreadMessages = 0;
+        chat.unreadMessages(0);
+        dialog.scroll();
+      }
     });
+    dialog.onMessage((message) => {
+      this.#onMessage?.(message);
+      chat.message(message);
+    });
+    this.#info = { username, avatar, message, time, unreadMessages }
     this.#dialog = dialog;
     this.#chat = chat;
   }
 
   generate() {
-    chatList.appendChild(this.#chat);
+    chatList.appendChild(this.#chat.html);
   }
 
-  get dialog() {
-    return this.#dialog;
+  addMessage(message) {
+    if (!this.isActive()) {
+      const count = ++this.#info.unreadMessages;
+      this.#chat.unreadMessages(count);
+    }
+    this.#dialog.addMessage(message, false);
+    this.#chat.message(message);
+  }
+
+  isActive() {
+    const active = document.getElementsByClassName('chat active').item(0);
+    return active === this.#chat.html;
+  }
+
+  onMessage(listener) {
+    this.#onMessage = listener;
+    return this;
   }
 }
