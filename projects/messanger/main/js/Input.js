@@ -1,15 +1,14 @@
 'use strict';
 
+const dialog = document.getElementsByClassName('dialog').item(0);
+
 const buildInput = () => {
   const messageInput = document.createElement('div');
   const input = document.createElement('input');
-  messageInput.className = 'message-input';
-  input.className = ''
-  input.autocomplete = 'off';
-  input.type = 'text';
-  input.placeholder = 'Type a massage...';
+  Object.assign(messageInput, { className: 'message-input' });
+  Object.assign(input, { type: 'text', placeholder: 'Write a message...' });
   messageInput.appendChild(input);
-  return { input, messageInput };
+  return [messageInput, input];
 };
 
 export default class Input {
@@ -17,7 +16,7 @@ export default class Input {
   #messageInput = null;
 
   constructor() {
-    const { input, messageInput } = buildInput();
+    const [messageInput, input] = buildInput();
     input.addEventListener('keypress', (event) => {
       if (event.key !== 'Enter') return;
       const { value: text } = input;
@@ -27,12 +26,12 @@ export default class Input {
     this.#messageInput = messageInput;
   }
 
+  generate() {
+    dialog.appendChild(this.#messageInput);
+  }
+
   onMessage(listener) {
     this.#onMessage = listener;
     return this;
-  }
-
-  generate() {
-    return this.#messageInput;
   }
 }

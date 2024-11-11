@@ -10,12 +10,12 @@
       {
         "message": "Hi, i am fine",
         "myMessage": true,
-        "time": "10:54PM"
+        "time": "10:54 PM"
       },
       {
         "message": "Hello, how are you",
         "myMessage": false,
-        "time": "10:55PM"
+        "time": "10:55 PM"
       }
     ]
   },
@@ -30,17 +30,17 @@
       {
         "message": "Lorem ipsum dolor, sit amet consectetur adipisicing elit",
         "myMessage": true,
-        "time": "10:54PM"
+        "time": "10:54 PM"
       },
       {
         "message": "Lorem ipsum dolor, sit amet",
         "myMessage": false,
-        "time": "10:55PM"
+        "time": "10:55 PM"
       },
       {
         "message": "consectetur adipisicing elit",
         "myMessage": false,
-        "time": "10:54PM"
+        "time": "10:54 PM"
       }
     ]
   },
@@ -55,12 +55,12 @@
       {
         "message": "sit amet consectetur adipisicing elit",
         "myMessage": true,
-        "time": "10:54PM"
+        "time": "10:54 PM"
       },
       {
         "message": "Lorem ipsum dolor, sit amet",
         "myMessage": false,
-        "time": "10:55PM"
+        "time": "10:55 PM"
       }
     ]
   }

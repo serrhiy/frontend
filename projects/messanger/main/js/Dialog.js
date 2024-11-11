@@ -2,19 +2,26 @@
 
 import Input from "./Input.js";
 
+const dialog = document.getElementsByClassName('dialog').item(0);
+
 const getCurrentTime = () => {
   const date = new Date();
   const options = { hour: 'numeric', minute: 'numeric', hour12: true };
   return date.toLocaleString('en-US', options);
 }
 
+const buildMessages = () => {
+  const messages = document.createElement('div');
+  return Object.assign(messages, { className: 'messages' });
+};
+
 const buildMessage = (text, time, myMessage = true) => {
   const message = document.createElement('div');
   const messageText = document.createElement('div');
   const messageTime = document.createElement('div');
-  message.className = myMessage ? 'my-message' : 'persons-message';
-  messageText.className = 'text';
-  messageTime.className = 'time';
+  Object.assign(message, { className: myMessage ? 'my' : 'other' });
+  Object.assign(messageText, { className: 'text' });
+  Object.assign(messageTime, { className: 'time' });
   messageText.appendChild(document.createTextNode(text));
   messageTime.appendChild(document.createTextNode(time));
   message.append(messageText, messageTime);
@@ -22,30 +29,23 @@ const buildMessage = (text, time, myMessage = true) => {
 };
 
 export default class Dialog {
-  #dialog = null;
   #input = null;
   #onMessage = null;
-  #messages = [];
+  #usersMessages = [];
+  #messages = null;
 
-  constructor(messages) {
-    const divMessages = document.createElement('div');
-    divMessages.className = 'messages';
-    for (const { message, time, myMessage } of messages) {
+  constructor(usersMessages) {
+    const messages = buildMessages();
+    for (const { message, time, myMessage } of usersMessages) {
       const generated = buildMessage(message, time, myMessage);
-      divMessages.appendChild(generated);
+      messages.appendChild(generated);
     }
+    this.#usersMessages = usersMessages;
     this.#input = new Input().onMessage((message) => {
       this.addMessage(message, true);
       this.#onMessage?.(message);
-    }).generate();
-    this.#dialog = divMessages;
+    });
     this.#messages = messages;
-  }
-
-  generate() {
-    const generated = document.createElement('div');
-    generated.append(this.#dialog, this.#input);
-    return generated;
   }
 
   onMessage(listener) {
@@ -53,9 +53,15 @@ export default class Dialog {
     return this;
   }
 
-  addMessage(message, myMassage = true, time = getCurrentTime()) {
-    const generated = buildMessage(message, time, myMassage);
-    this.#dialog.prepend(generated);
-    this.#messages.push({ message, time, myMassage });
+  generate() {
+    dialog.appendChild(this.#messages);
+    this.#input.generate();
+  }
+
+  addMessage(message, myMessage = true, time = getCurrentTime()) {
+    const generated = buildMessage(message, time, myMessage);
+    this.#messages.appendChild(generated);
+    this.#usersMessages.push({ message, time, myMessage });
+    this.#messages.scrollTop = this.#messages.scrollHeight;
   }
 }
