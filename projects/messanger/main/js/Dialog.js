@@ -1,8 +1,9 @@
 'use strict';
 
 import Input from "./Input.js";
+import DialogHeader from "./DialogHeader.js";
 
-const dialog = document.getElementsByClassName('dialog').item(0);
+const buttom = document.querySelector('.dialog .buttom');
 
 const getCurrentTime = () => {
   const date = new Date();
@@ -30,11 +31,12 @@ const buildMessage = (text, time, myMessage = true) => {
 
 export default class Dialog {
   #input = null;
+  #header = null;
   #onMessage = null;
   #usersMessages = [];
   #messages = null;
 
-  constructor(usersMessages) {
+  constructor(username, usersMessages) {
     const messages = buildMessages();
     for (const { message, time, myMessage } of usersMessages) {
       const generated = buildMessage(message, time, myMessage);
@@ -45,6 +47,7 @@ export default class Dialog {
       this.addMessage(message, true);
       this.#onMessage?.(message);
     });
+    this.#header = new DialogHeader(username);
     this.#messages = messages;
   }
 
@@ -54,12 +57,13 @@ export default class Dialog {
   }
 
   generate() {
-    dialog.appendChild(this.#messages);
+    this.#header.generate();
+    buttom.appendChild(this.#messages);
     this.#input.generate();
   }
 
   scroll() {
-    this.#messages.scrollTop = this.#messages.scrollHeight;
+    buttom.scrollTop = buttom.scrollHeight;
   }
 
   addMessage(message, myMessage = true, time = getCurrentTime()) {

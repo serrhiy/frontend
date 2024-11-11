@@ -1,6 +1,6 @@
 'use strict';
 
-const dialog = document.getElementsByClassName('dialog').item(0);
+const buttom = document.querySelector('.dialog .buttom');
 
 const buildInput = () => {
   const messageInput = document.createElement('div');
@@ -27,7 +27,7 @@ export default class Input {
   }
 
   generate() {
-    dialog.appendChild(this.#messageInput);
+    buttom.appendChild(this.#messageInput);
   }
 
   onMessage(listener) {

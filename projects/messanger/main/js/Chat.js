@@ -3,7 +3,9 @@
 import Dialog from './Dialog.js';
 
 const chatList = document.getElementsByClassName('chat-list').item(0);
-const divDialog = document.getElementsByClassName('dialog').item(0);
+
+const buttom = document.querySelector('.dialog .buttom');
+const top = document.querySelector('.dialog .top');
 
 const buildNumber = (count) => {
   const number = document.createElement('div');
@@ -67,12 +69,13 @@ export default class Chat {
     const { user: { username, avatar }, messages, unreadMessages } = data;
     const { message, time } = messages[0];
     const chat = buildChat(username, avatar, message, time, unreadMessages);
-    const dialog = new Dialog(messages);
+    const dialog = new Dialog(username, messages);
     chat.html.addEventListener('click', () => {
       const active = document.getElementsByClassName('chat active').item(0);
       if (active) active.classList.remove('active');
       chat.html.classList.add('active');
-      divDialog.innerHTML = '';
+      buttom.innerHTML = '';
+      top.innerHTML = '';
       dialog.generate();
       if (this.#info.unreadMessages > 0) {
         this.#info.unreadMessages = 0;
